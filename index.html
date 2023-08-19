@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Sequence Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        #sequence {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .col-md-12 {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mt-3">Number Sequence Generator</h2>
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <label for="startNumber">Start Number:</label>
+                <input type="number" id="startNumber" class="form-control" value="1">
+            </div>
+            <div class="col-md-12 col-12">
+                <label for="endNumber">End Number:</label>
+                <input type="number" id="endNumber" class="form-control" value="20000">
+            </div>
+            <div class="col-md-12 col-12">
+                <label for="stepSize">Step Size:</label>
+                <input type="number" id="stepSize" class="form-control" value="30">
+            </div>
+            <div class="col-md-12 col-12">
+                <button class="btn btn-primary btn-block mt-2" onclick="generateSequence()">Generate Sequence</button>
+                <button class="btn btn-success btn-block mt-2" id="copyButton" onclick="copySequence()" disabled>Copy</button>
+            </div>
+            <div class="col-md-12 col-12">
+                <div id="sequence"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="copyModal" tabindex="-1" role="dialog" aria-labelledby="copyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="copyModalLabel">Copy Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    The sequence has been copied to the clipboard.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateSequence() {
+            const startNumber = parseInt(document.getElementById('startNumber').value);
+            const endNumber = parseInt(document.getElementById('endNumber').value);
+            const stepSize = parseInt(document.getElementById('stepSize').value);
+            
+            let result = '';
+            for (let i = startNumber; i <= endNumber; i += stepSize) {
+                result += i + '-' + (i + stepSize - 1) + ', ';
+            }
+            
+            // Display the result in the "sequence" div
+            document.getElementById('sequence').textContent = result;
+            document.getElementById('copyButton').disabled = false; // Enable the copy button
+        }
+
+        function copySequence() {
+            const sequence = document.getElementById('sequence').textContent;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = sequence;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Show the modal
+            $('#copyModal').modal('show');
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+  </html>
+                  
