@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Number Sequence Generator</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 10px;
         }
 
         label {
@@ -23,12 +24,17 @@
         }
 
         @media (max-width: 767px) {
-            .container {
-                max-width: 100%;
+            body {
+                margin: 5px;
             }
 
-            .col-md-12 {
-                padding: 0;
+            label, input, button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            #sequence {
+                margin-top: 10px;
             }
         }
     </style>
@@ -110,5 +116,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-  </html>
-                  
+</html>
